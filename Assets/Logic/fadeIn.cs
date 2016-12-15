@@ -1,41 +1,39 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class fadeIn : MonoBehaviour 
+public class fadeIn : MonoBehaviour
 {
 	public float fadeSpeed = 0.8f;
 	private float alpha = 1f;
+	public GameObject go;
 
-	void Start()
-	        {
-		
-
-		alpha = 1;
-		Debug.Log("alpha at start: " + alpha);
-
-	          }
-
-
-	void Update()
+	void Start ()
 	{
-		FromBlack();
+		alpha = 1;
+		Debug.Log ("alpha at start: " + alpha);
+
 	}
 
-	void FromBlack() 
-	{
-		Renderer rend = GetComponent<Renderer>();
 
-		if (alpha>0)
-		{
+	void Update ()
+	{
+		FromBlack ();
+	}
+
+	void FromBlack ()
+	{
+		Renderer rend = go.GetComponent<Renderer> ();
+
+		if (alpha > 0) {
 			alpha -= fadeSpeed * Time.deltaTime;
-			Mathf.Clamp01(alpha);
-			Debug.Log("alpha: "+alpha+ " Time: "+Time.deltaTime);
-			rend.material.SetColor("_Color", new Color(0,0,0,alpha));
+			Mathf.Clamp01 (alpha);
+			rend.material.SetColor ("_Color", new Color (0, 0, 0, alpha));
+			//rend.material.color.a = alpha;
 		}
 	}
 
-	void OnGUI() 
+	/*void OnGUI() 
 	{
 		//if (GUILayout.Button("Press Me"))
-	}
+	}*/
 }
